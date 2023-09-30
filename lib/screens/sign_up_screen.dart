@@ -22,6 +22,8 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
 
+  //bool visible = false;
+
   final FirebaseAuthService _auth = FirebaseAuthService();
   final  _store = FirebaseFirestore.instance;
  
@@ -63,6 +65,29 @@ class _SignupScreenState extends State<SignupScreen> {
         prefixIcon: Icon(icon),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0)));
   }
+
+
+  void _displayDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Registration Error'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -182,14 +207,14 @@ class _SignupScreenState extends State<SignupScreen> {
                                   sexController.text = value!;
                                 });
                               }),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          AppTextFormFiled(
-                            iconData: Icons.verified,
-                            controller: verificationCodeController,
-                            hintText: 'Enter verification code',
-                          ),
+                        //  const SizedBox(
+                         //   height: 20.0,
+                        //  ),
+                        //  AppTextFormFiled(
+                           // iconData: Icons.verified,
+                          //  controller: verificationCodeController,
+                         //   hintText: 'Enter verification code',
+                       //   ),
                           const SizedBox(
                             height: 20.0,
                           ),
@@ -287,29 +312,39 @@ User? user = await _auth.signupWithEmailAndPassword(email, password);
 
 
 
-  await _store.collection("users")
-  .doc(email)
-  .set({
-
-    "email":email,
-    "password":password,
-    "firstname":firstName,
-    "lastname":lastName,
-    "birthday":birthday,
-    "idnumber":idNumber,
-    "phone":phone,
-    "gender":gender,
-    "type":userType
-
-
-  });
 
   print("User is successfully created");
-Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(
-        builder: (ctx) => HomeScreen(username: firstName,)));
+  if(user!= null){
 
+    await _store.collection("users")
+        .doc(email)
+        .set({
+
+      "email":email,
+      "password":password,
+      "firstname":firstName,
+      "lastname":lastName,
+      "birthday":birthday,
+      "idnumber":idNumber,
+      "phone":phone,
+      "gender":gender,
+      "type":userType
+
+
+    });
+
+
+
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (ctx) => HomeScreen(username: firstName,)));
+
+
+
+  }else{
+    _displayDialog('Registration failed. Please try again.');
+  }
 
 
 
