@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "66991098648",
+    "project_id": "gproject-a5926",
+    "storage_bucket": "gproject-a5926.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66991098648:android:437f326ffb04115a7a2c6d",
+        "android_client_info": {
+          "package_name": "com.example.patient_journey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66991098648-q5ug86an5nmcc8pej26lob00hjik5f1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2wrdTSpv-iocFePzEbqSSY-OkdE_3VXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66991098648-q5ug86an5nmcc8pej26lob00hjik5f1j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "66991098648-1tefp7t0dph444bdga0g396pmf8qe1pi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.patientJourney.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
